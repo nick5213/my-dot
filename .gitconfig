@@ -5,3 +5,7 @@
 	br = branch
 	ck = checkout
 	last = log --stat --date=iso8601 -1 HEAD
+	modify = remote set-url origin
+	sname = config --local user.name
+	smail = config --local user.email
+	al = config --get-regexp alias
