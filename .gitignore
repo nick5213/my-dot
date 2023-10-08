@@ -1,0 +1,16 @@
+# ignore all
+*
+
+# include README.md
+!README.md
+
+# include my dot file
+!.aliases
+!.bash_profile
+!.bashrc
+
+!.gitignore
+
+!.tmux.conf
+
+.vimrc
