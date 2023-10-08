@@ -1,0 +1,7 @@
+[core]
+	editor = vim
+[alias]
+	st = status
+	br = branch
+	ck = checkout
+	last = log --stat --date=iso8601 -1 HEAD
