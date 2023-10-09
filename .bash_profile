@@ -8,6 +8,10 @@ for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 
+# Jenv
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
 # Android SDK
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"

@@ -1,2 +1,13 @@
+#
+# Jenv switch java version
+# - add   : jenv add /xxx/jdk/Contents/Home/
+# - remove: jenv remove oracle64-1.8.0.101
+# - global: jenv global 11.0
+# - local : jenv local 11.0
+# - unset : jenv local --unset
+#
+alias alternatives="jenv"
+alias javas="jenv versions"
+
 # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
 alias plistbuddy="/usr/libexec/PlistBuddy"
