@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 #
 # Jenv switch java version
 # - add   : jenv add /xxx/jdk/Contents/Home/
@@ -11,3 +13,8 @@ alias javas="jenv versions"
 
 # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
 alias plistbuddy="/usr/libexec/PlistBuddy"
+
+# adb
+alias adb-input="adb shell input text"
+alias adb-sreen="adb shell screencap -p"
+alias adb-record="adb shell screenrecord"

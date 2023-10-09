@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# adb clear input text
+function adb-clear() {
+  adb shell input keyevent KEYCODE_MOVE_END
+  adb shell input keyevent --longpress $(printf 'KEYCODE_DEL %.0s' {1..250})
+}

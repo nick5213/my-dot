@@ -8,6 +8,7 @@
 !.aliases
 !.bash_profile
 !.bashrc
+!.functions
 
 !.gitconfig
 !.gitignore
