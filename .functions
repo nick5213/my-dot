@@ -11,7 +11,7 @@ function adb-clear() {
 ### git operate ###
 
 # git set global alias
-fun git-set-alias() {
+function git-set-alias() {
   local alias=$1
   local cmd=$2
   git config --global alias.${alias} "${cmd}"
