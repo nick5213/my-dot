@@ -1,7 +1,19 @@
 #!/usr/bin/env bash
 
+### adb operate ###
+
 # adb clear input text
 function adb-clear() {
   adb shell input keyevent KEYCODE_MOVE_END
   adb shell input keyevent --longpress $(printf 'KEYCODE_DEL %.0s' {1..250})
+}
+
+### git operate ###
+
+# git set global alias
+fun git-set-alias() {
+  local alias=$1
+  local cmd=$2
+  git config --global alias.${alias} "${cmd}"
+  git config --get-regexp alias.${alias}
 }

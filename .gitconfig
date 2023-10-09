@@ -9,3 +9,7 @@
 	sname = config --local user.name
 	smail = config --local user.email
 	al = config --get-regexp alias
+	pullx = pull origin
+	cmm = commit -m
+[pull]
+	rebase = false
