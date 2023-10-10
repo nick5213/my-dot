@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# jadx
+export JADX_HOME="$HOME/develop/decompile/jadx-1.4.7/"

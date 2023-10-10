@@ -10,6 +10,9 @@
 !.bashrc
 !.functions
 
+# include if you need
+!.bash_local
+
 !.gitconfig
 !.gitignore
 

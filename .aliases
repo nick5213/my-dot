@@ -18,3 +18,16 @@ alias plistbuddy="/usr/libexec/PlistBuddy"
 alias adb-input="adb shell input text"
 alias adb-sreen="adb shell screencap -p"
 alias adb-record="adb shell screenrecord"
+
+### xcodebuild ###
+
+# show xcode and sdk version info. support with `-json`
+alias xcb-version="xcodebuild -version -sdk"
+# show sdk version
+alias xcb-sdk="xcodebuild -showsdks"
+# show project info. support with `-json`
+alias xcb-proj-info="xcodebuild -list -project"
+# show build settings info. support `-json`
+alias xcb-build-settings="xcodebuild -showBuildSettings -destination 'generic/platform=iOS' -project"
+# clean app project
+alias xcb-clean="xcodebuild -destination 'generic/platform=iOS' clean -project"
