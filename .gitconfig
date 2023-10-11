@@ -11,5 +11,12 @@
 	al = config --get-regexp alias
 	pullx = pull origin
 	cmm = commit -m
+	cloneb = clone --single-branch -b
+	rest = restore --staged
 [pull]
 	rebase = false
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
