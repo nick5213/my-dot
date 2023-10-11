@@ -13,6 +13,7 @@
 	cmm = commit -m
 	cloneb = clone --single-branch -b
 	rest = restore --staged
+	diffc = diff --cached
 [pull]
 	rebase = false
 [filter "lfs"]
