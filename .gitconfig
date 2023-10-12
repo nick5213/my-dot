@@ -14,6 +14,8 @@
 	cloneb = clone --single-branch -b
 	rest = restore --staged
 	diffc = diff --cached
+	cpick = cherry-pick --no-commit
+	pk = cherry-pick --no-commit
 [pull]
 	rebase = false
 [filter "lfs"]
