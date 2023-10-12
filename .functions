@@ -10,10 +10,48 @@ function adb-clear() {
 
 ### git operate ###
 
+#
 # git set global alias
+#
+# Arguments:
+#  $1: alias
+#  $2: command
+#
 function git-set-alias() {
   local alias=$1
   local cmd=$2
   git config --global alias.${alias} "${cmd}"
   git config --get-regexp alias.${alias}
+}
+
+#
+# git clone sparse-checkout specified dir
+#
+# Arguments:
+#  $1: url
+#  $2: branch
+#  ..: others file or dir
+#
+function git-clone-sparse() {
+  local url=$1
+  local branch=$2
+  shift 2
+  local params=$(echo "$@" | tr ' ' '\n')
+  local name=$(basename -s .git $url)
+
+  mkdir -p ${name}
+  cd ${name} || return 1
+
+  # init
+  git init
+  git remote add -f origin $url
+
+  # enable sparsecheckout
+  git config --local core.sparsecheckout true
+  echo $params >> .git/info/sparse-checkout
+
+  # checkout
+  git checkout $branch
+
+  cd -
 }
