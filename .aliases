@@ -14,10 +14,20 @@ alias javas="jenv versions"
 # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
 alias plistbuddy="/usr/libexec/PlistBuddy"
 
-# adb
+### adb ###
 alias adb-input="adb shell input text"
 alias adb-sreen="adb shell screencap -p"
 alias adb-record="adb shell screenrecord"
+
+
+### gradle ###
+alias .gw-sign="./gradlew signingReport"
+
+### keytool ###
+alias keytool-key="keytool -list -v -keystore"
+alias keytool-apk="keytool -printcert -jarfile"
+alias keytool-rsa="keytool -printcert -file"
+
 
 ### xcodebuild ###
 
