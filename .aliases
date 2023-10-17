@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+local alias_os_type=$(uname)
+
 #
 # Jenv switch java version
 # - add   : jenv add /xxx/jdk/Contents/Home/
@@ -41,3 +43,11 @@ alias xcb-proj-info="xcodebuild -list -project"
 alias xcb-build-settings="xcodebuild -showBuildSettings -destination 'generic/platform=iOS' -project"
 # clean app project
 alias xcb-clean="xcodebuild -destination 'generic/platform=iOS' clean -project"
+
+
+### net utils ###
+if [[ "$alias_os_type" == "Darwin" ]]; then
+  alias netst="lsof -i -n -P | grep LISTEN"
+elif [[ "$alias_os_type" == "Linux" ]]; then
+  alias netst="netstat -ltpn"
+fi
