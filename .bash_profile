@@ -29,3 +29,6 @@ export PATH="$PATH:$NDK_HOME/toolchains/llvm/prebuilt/darwin-x86_64/bin"
 
 # jadx
 export PATH="$PATH:$JADX_HOME/bin"
+
+# cmake
+export PATH="$PATH:$CMAKE_HOME/bin"

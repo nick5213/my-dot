@@ -2,3 +2,6 @@
 
 # jadx
 export JADX_HOME="$HOME/develop/decompile/jadx-1.4.7/"
+
+# cmake
+export CMAKE_HOME="$HOME/develop/cmake/cmake-3.27.7/CMake.app/Contents/"
