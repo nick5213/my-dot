@@ -11,11 +11,17 @@
 	al = config --get-regexp alias
 	pullx = pull origin
 	cmm = commit -m
+	cma = commit --amend
+	cmn = commit --amend --no-edit
 	cloneb = clone --single-branch -b
+	cloned = clone --depth=1
 	rest = restore --staged
 	diffc = diff --cached
+	dc = diff --cached
 	cpick = cherry-pick --no-commit
 	pk = cherry-pick --no-commit
+	tags = tag -l
+	list = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
 [pull]
 	rebase = false
 [filter "lfs"]
