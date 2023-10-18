@@ -20,6 +20,7 @@ alias plistbuddy="/usr/libexec/PlistBuddy"
 alias adb-input="adb shell input text"
 alias adb-sreen="adb shell screencap -p"
 alias adb-record="adb shell screenrecord"
+alias adb-back="adb shell input keyevent BACK"
 
 
 ### gradle ###
@@ -51,3 +52,7 @@ if [[ "$alias_os_type" == "Darwin" ]]; then
 elif [[ "$alias_os_type" == "Linux" ]]; then
   alias netst="netstat -ltpn"
 fi
+
+### Linux common command
+# macOS support md5sum
+command -v md5sum > /dev/null || alias md5sum="md5"
