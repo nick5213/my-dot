@@ -2,6 +2,12 @@
 
 local alias_os_type=$(uname)
 
+# Easier navigation: .., ..., ...., .....
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
 #
 # Jenv switch java version
 # - add   : jenv add /xxx/jdk/Contents/Home/
@@ -56,3 +62,7 @@ fi
 ### Linux common command
 # macOS support md5sum
 command -v md5sum > /dev/null || alias md5sum="md5"
+
+
+# pwd and popy
+alias pwdc="pwd | pbcopy"
