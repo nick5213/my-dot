@@ -32,6 +32,7 @@ alias adb-back="adb shell input keyevent BACK"
 ### gradle ###
 alias .gw-sign="./gradlew signingReport"
 alias .gw-tasks="./gradlew tasks -q"
+alias .gw-debug="./gradlew clean -Dorg.gradle.debug=true --no-daemon"
 
 ### keytool ###
 alias keytool-key="keytool -list -v -keystore"
