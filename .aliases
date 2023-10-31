@@ -68,3 +68,6 @@ command -v md5sum > /dev/null || alias md5sum="md5"
 
 # pwd and popy
 alias pwdc="pwd | pbcopy"
+
+# figlet
+alias wordart="figlet"
