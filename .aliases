@@ -24,7 +24,6 @@ alias plistbuddy="/usr/libexec/PlistBuddy"
 
 ### adb ###
 alias adb-input="adb shell input text"
-alias adb-sreen="adb shell screencap -p"
 alias adb-record="adb shell screenrecord"
 alias adb-back="adb shell input keyevent BACK"
 

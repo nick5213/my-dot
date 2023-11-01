@@ -8,6 +8,22 @@ function adb-clear() {
   adb shell input keyevent --longpress $(printf 'KEYCODE_DEL %.0s' {1..250})
 }
 
+#
+# adb screen
+#
+# Arguments:
+#  $1: png path: ~/output/xxx.png
+#
+function adb-screen() {
+  local out_dir=$(dirname $1)
+  local png_name=$(basename $1)
+  local tmp_path="/data/local/tmp/$png_name"
+
+  adb shell screencap -p $tmp_path
+  adb pull $tmp_path $out_dir
+  adb shell rm $tmp_path
+}
+
 ### git operate ###
 
 #
