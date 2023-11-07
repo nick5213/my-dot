@@ -32,6 +32,7 @@ alias adb-back="adb shell input keyevent BACK"
 alias .gw-sign="./gradlew signingReport"
 alias .gw-tasks="./gradlew tasks -q"
 alias .gw-debug="./gradlew clean -Dorg.gradle.debug=true --no-daemon"
+alias .gw-force="./gradlew clean --refresh-dependencies"
 
 ### keytool ###
 alias keytool-key="keytool -list -v -keystore"
@@ -67,6 +68,11 @@ command -v md5sum > /dev/null || alias md5sum="md5"
 
 # pwd and popy
 alias pwdc="pwd | pbcopy"
+
+
+### wget ###
+alias wget-dir="wget -r -np -nd -R index.html"
+
 
 # figlet
 alias wordart="figlet"
