@@ -74,5 +74,13 @@ alias pwdc="pwd | pbcopy"
 alias wget-dir="wget -r -np -nd -R index.html"
 
 
+### pkg ###
+alias pkgs="pkgutil --pkgs"
+alias pkg-info="pkgutil --pkg-info"
+alias pkg-files="pkgutil --files"
+# need rm location by yourself
+alias pkg-rm="sudo pkgutil --forget"
+
+
 # figlet
 alias wordart="figlet"
