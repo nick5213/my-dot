@@ -27,8 +27,12 @@ export PATH="$PATH:$NDK_HOME/toolchains/aarch64-linux-android-4.9/prebuilt/darwi
 export PATH="$PATH:$NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin"
 export PATH="$PATH:$NDK_HOME/toolchains/llvm/prebuilt/darwin-x86_64/bin"
 
+# cmake
+export PATH="$PATH:$CMAKE_HOME/bin"
+
+## hack ##
 # jadx
 export PATH="$PATH:$JADX_HOME/bin"
 
-# cmake
-export PATH="$PATH:$CMAKE_HOME/bin"
+# class-dump
+export PATH="$PATH:$CLASS_DUMP_HOME"

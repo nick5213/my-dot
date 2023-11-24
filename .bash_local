@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-# jadx
-export JADX_HOME="$HOME/develop/decompile/jadx-1.4.7/"
-
 # cmake
 export CMAKE_HOME="$HOME/develop/cmake/cmake-3.27.7/CMake.app/Contents/"
+
+## hack ##
+# jadx # java # android #
+export JADX_HOME="$HOME/develop/decompile/jadx-1.4.7/"
+
+# class-dump # macos #
+export CLASS_DUMP_HOME="$HOME/develop/hack/macos/class-dump-3.5/"
