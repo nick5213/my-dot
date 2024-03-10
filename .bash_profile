@@ -1,5 +1,6 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
+export PATH="/opt/homebrew/bin:$PATH"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -11,6 +12,10 @@ done;
 # Jenv
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 # Android SDK
 export ANDROID_HOME="$HOME/Library/Android/sdk"
@@ -36,3 +41,7 @@ export PATH="$PATH:$JADX_HOME/bin"
 
 # class-dump
 export PATH="$PATH:$CLASS_DUMP_HOME"
+
+# add rvm path
+export PATH="$PATH:$HOME/.rvm/bin"
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
