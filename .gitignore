@@ -20,3 +20,6 @@
 
 !.vimrc
 !.zshrc
+
+# include install.sh
+!install.sh
