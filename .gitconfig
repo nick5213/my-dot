@@ -1,5 +1,6 @@
 [core]
 	editor = vim
+	autocrlf = input
 [alias]
 	st = status
 	br = branch
@@ -9,6 +10,7 @@
 	sname = config --local user.name
 	smail = config --local user.email
 	al = config --get-regexp alias
+	ls = config --get-regexp alias
 	global = config --global -l
 	local = config --local -l
 	pullx = pull origin
