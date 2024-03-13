@@ -37,7 +37,8 @@ alias adb-focus="adb shell dumpsys window | grep mCurrentFocus"
 alias .gw-sign="./gradlew signingReport"
 alias .gw-tasks="./gradlew tasks -q"
 alias .gw-debug="./gradlew clean -Dorg.gradle.debug=true --no-daemon"
-alias .gw-deps="./gradlew clean --refresh-dependencies"
+alias .gw-refresh="./gradlew clean --refresh-dependencies"
+alias .gw-deps="./gradlew :app:dependencies --configuration implementation"
 
 ### keytool ###
 alias keytool-key="keytool -list -v -keystore"
