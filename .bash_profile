@@ -1,7 +1,8 @@
 # Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH";
-export PATH="/usr/local/bin:$PATH"
-# export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/usr/bin:$PATH";
+export PATH="$PATH:/usr/local/bin"
+# support M1
+export PATH="$PATH:/opt/homebrew/bin"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
