@@ -29,7 +29,7 @@ alias adb-back="adb shell input keyevent BACK"
 alias adb-proxy-set="adb shell settings put global http_proxy"
 alias adb-proxy-unset="adb shell settings put global http_proxy :0"
 alias adb-proxy-del="adb shell settings delete global http_proxy"
-alias adb-resume="adb shell dumpsys activity activities | grep mResumedActivity"
+alias adb-resume="adb shell dumpsys activity activities | grep \"mFocus\|mResume\""
 alias adb-focus="adb shell dumpsys window | grep mCurrentFocus"
 
 
