@@ -1,3 +1,17 @@
 #!/usr/bin/env bash
 
+# man
+
+# copy-mode
+## g     : goto line
+## alt+up/down: keep position and up/down
+## ctrl+s: search mode
+### copy-search mode
+#### input and enter: n/ctrl+s:next; ctrl+r:reverse search
+### v: select start
+
+# show-buffer
+## `[prefix]+:`: `show-buffer`
+
+
 # [reference]: https://louiszhai.github.io/2017/09/30/tmux/
