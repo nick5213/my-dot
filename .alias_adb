@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+
+function _adb-proxy-set() {
+  if [ "$1" = "-d" ]; then
+    adb -d shell settings put global http_proxy "${@:2}"
+  elif [ "$1" = "-e" ]; then
+    adb -e shell settings put global http_proxy "${@:2}"
+  elif [ "$1" = "-s" ]; then
+    adb -s "$2" shell settings put global http_proxy "${@:3}"
+  else
+    adb -d shell settings put global http_proxy "$1"
+  fi
+}
+
+function _adb-proxy-unset() {
+  if [ -z "$1" ]; then
+    adb -d shell settings put global http_proxy :0
+  else
+    adb "$@" shell settings put global http_proxy :0
+  fi
+}
+
+function _adb-proxy-del() {
+  if [ -z "$1" ]; then
+    adb -d shell settings delete global http_proxy
+  else
+    adb "$@" shell settings delete global http_proxy
+  fi
+}
+
+function _adb-input() {
+  if [ "$1" = "-d" ]; then
+    adb -d shell input text "${@:2}"
+  elif [ "$1" = "-e" ]; then
+    adb -e shell input text "${@:2}"
+  elif [ "$1" = "-s" ]; then
+    adb -s "$2" shell input text "${@:3}"
+  else
+    adb -d shell input text "$1"
+  fi
+}
+
+function _adb-back() {
+  if [ -z "$1" ]; then
+    adb -d shell input keyevent BACK
+  else
+    adb "$@" shell input keyevent BACK
+  fi
+}
+
+function _adb-record() {
+  if [ "$1" = "-d" ]; then
+    adb -d shell screenrecord "${@:2}"
+  elif [ "$1" = "-e" ]; then
+    adb -e shell screenrecord "${@:2}"
+  elif [ "$1" = "-s" ]; then
+    adb -s "$2" shell screenrecord "${@:3}"
+  else
+    adb -d shell screenrecord "$1"
+  fi
+}
+
+alias adb-record="_adb-record"
+
+alias adb-proxy-set="_adb-proxy-set"
+alias adb-proxy-unset="_adb-proxy-unset"
+alias adb-proxy-del="_adb-proxy-del"
+
+alias adb-input='_adb-input'
+alias adb-back='_adb-back'
+
+alias adb-resume='function _adb-resume() {
+  if [ -z "$1" ]; then
+    adb -d shell dumpsys activity activities | grep "Focus\|Resume"
+  else
+    adb "$@" shell dumpsys activity activities | grep "Focus\|Resume"
+  fi
+}; _adb-resume'
+
+alias adb-focus='function _adb-focus() {
+  if [ -z "$1" ]; then
+    adb -d shell dumpsys window | grep "Focus"
+  else
+    adb "$@" shell dumpsys window | grep "Focus"
+  fi
+}; _adb-focus'

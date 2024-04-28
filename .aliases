@@ -2,6 +2,10 @@
 
 local alias_os_type=$(uname)
 
+for file in ~/.{alias_adb}; do
+  [ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+
 # Easier navigation: .., ..., ...., .....
 alias ..="cd .."
 alias ...="cd ../.."
@@ -22,17 +26,6 @@ alias javas="jenv versions"
 # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
 alias plistbuddy="/usr/libexec/PlistBuddy"
 
-### adb ###
-alias adb-input="adb shell input text"
-alias adb-record="adb shell screenrecord"
-alias adb-back="adb shell input keyevent BACK"
-alias adb-proxy-set="adb shell settings put global http_proxy"
-alias adb-proxy-unset="adb shell settings put global http_proxy :0"
-alias adb-proxy-del="adb shell settings delete global http_proxy"
-alias adb-resume="adb shell dumpsys activity activities | grep \"mFocus\|mResume\""
-alias adb-focus="adb shell dumpsys window | grep mCurrentFocus"
-
-
 ### gradle ###
 alias .gw-sign="./gradlew signingReport"
 alias .gw-tasks="./gradlew tasks -q"
@@ -44,7 +37,6 @@ alias .gw-deps="./gradlew :app:dependencies --configuration implementation"
 alias keytool-key="keytool -list -v -keystore"
 alias keytool-apk="keytool -printcert -jarfile"
 alias keytool-rsa="keytool -printcert -file"
-
 
 ### xcodebuild ###
 
@@ -59,7 +51,6 @@ alias xcb-build-settings="xcodebuild -showBuildSettings -destination 'generic/pl
 # clean app project
 alias xcb-clean="xcodebuild -destination 'generic/platform=iOS' clean -project"
 
-
 ### net utils ###
 if [[ "$alias_os_type" == "Darwin" ]]; then
   alias netst="lsof -i -n -P | grep LISTEN"
@@ -69,16 +60,13 @@ fi
 
 ### Linux common command
 # macOS support md5sum
-command -v md5sum > /dev/null || alias md5sum="md5"
-
+command -v md5sum >/dev/null || alias md5sum="md5"
 
 # pwd and popy
 alias pwdc="pwd | pbcopy"
 
-
 ### wget ###
 alias wget-dir="wget -r -np -nd -R index.html"
-
 
 ### pkg ###
 alias pkgs="pkgutil --pkgs"
@@ -86,7 +74,6 @@ alias pkg-info="pkgutil --pkg-info"
 alias pkg-files="pkgutil --files"
 # need rm location by yourself
 alias pkg-rm="sudo pkgutil --forget"
-
 
 # figlet
 alias wordart="figlet"
