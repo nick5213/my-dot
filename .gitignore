@@ -17,6 +17,7 @@
 !.gitignore
 
 !.tmux.conf
+!.tmux.conf.local
 
 !.vimrc
 !.zshrc
