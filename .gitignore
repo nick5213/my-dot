@@ -24,4 +24,5 @@
 # include install.sh
 !install.sh
 
-!.alias_adb
+!.aliases_adb
+!.aliases_tmux

@@ -2,7 +2,7 @@
 
 local alias_os_type=$(uname)
 
-for file in ~/.{alias_adb}; do
+for file in ~/.{aliases_adb,aliases_tmux}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 

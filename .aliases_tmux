@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+function tx() {
+  if [ "$1" = "new" ]; then
+    tmux new -s "${@:2}"
+  elif [ "$1" = "attach" ]; then
+    tmux attach -t "${@:2}"
+  elif [ "$1" = "kill" ]; then
+    tmux kill-session -t "${@:2}"
+  elif [ "$1" = "switch" ]; then
+    tmux switch -t "${@:2}"
+  else
+    tmux "$@"
+  fi
+}
