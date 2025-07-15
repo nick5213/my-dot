@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 
 # cmake
-export CMAKE_HOME="$HOME/develop/cmake/cmake-3.27.7/CMake.app/Contents/"
+#export CMAKE_HOME="$HOME/develop/cmake/cmake-3.27.7/CMake.app/Contents/"
+export CMAKE_HOME="$HOME/Library/Android/sdk/cmake/3.22.1/"
 
 ## hack ##
 # jadx # java # android #
-export JADX_HOME="$HOME/develop/decompile/jadx-1.4.7/"
+#export JADX_HOME="$HOME/develop/decompile/jadx-1.4.7/"
+export JADX_HOME="$HOME/develop/decompile/jadx-1.5.0/"
 
 # class-dump # macos #
 export CLASS_DUMP_HOME="$HOME/develop/hack/macos/class-dump-3.5/"
+
+# python3
+export PYTHON3_HOME="/Users/lzh/Library/Python/3.9/"

@@ -27,11 +27,29 @@ alias javas="jenv versions"
 alias plistbuddy="/usr/libexec/PlistBuddy"
 
 ### gradle ###
+function _gw-deps() {
+  if [ -z "$1" ]; then
+    ./gradlew :app:dependencies
+  else
+    ./gradlew :"$@":dependencies
+  fi
+}
+
+function _gw-deps-short() {
+  if [ -z "$1" ]; then
+    ./gradlew :app:dependencies --configuration implementation
+  else
+    ./gradlew :"$@":dependencies --configuration implementation
+  fi
+}
+
 alias .gw-sign="./gradlew signingReport"
 alias .gw-tasks="./gradlew tasks -q"
 alias .gw-debug="./gradlew clean -Dorg.gradle.debug=true --no-daemon"
 alias .gw-refresh="./gradlew clean --refresh-dependencies"
-alias .gw-deps="./gradlew :app:dependencies --configuration implementation"
+alias .gw-deps="_gw-deps"
+alias .gw-deps-short="_gw-deps-short"
+
 
 ### keytool ###
 alias keytool-key="keytool -list -v -keystore"
@@ -50,6 +68,9 @@ alias xcb-proj-info="xcodebuild -list -project"
 alias xcb-build-settings="xcodebuild -showBuildSettings -destination 'generic/platform=iOS' -project"
 # clean app project
 alias xcb-clean="xcodebuild -destination 'generic/platform=iOS' clean -project"
+
+### ideviceinfo ###
+alias idb="ideviceinfo"
 
 ### net utils ###
 if [[ "$alias_os_type" == "Darwin" ]]; then
@@ -77,3 +98,16 @@ alias pkg-rm="sudo pkgutil --forget"
 
 # figlet
 alias wordart="figlet"
+
+alias timestamp="date +%s"
+
+
+function _flac2mp3() {
+  local input=$1
+  local dir=$(dirname ${input})
+  local name=$(basename ${input} .flac)
+  local output=${dir}/${name}.mp3
+  ffmpeg -i ${input} -ab 320k -map_metadata 0 -id3v2_version 3 ${output}
+}
+
+alias flac2mp3="_flac2mp3"
