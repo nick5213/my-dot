@@ -14,9 +14,11 @@
 	global = config --global -l
 	local = config --local -l
 	pullx = pull origin
-	cmm = commit -m
-	cma = commit --amend
-	cmn = commit --amend --no-edit
+	ct = commit
+	cc = commit -c HEAD
+	ctm = commit -m
+	amend = commit --amend
+	amendc = commit --amend --no-edit
 	cloneb = clone --single-branch -b
 	cloned = clone --depth=1
 	rest = restore --staged
