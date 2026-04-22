@@ -36,7 +36,6 @@ function init_git() {
   local remote_url=$1
   if [ -d ".git" ]; then
     echo "> ✅ Git repository already initialized."
-    return 0
   else
     echo "> 🔧 Init Git repository..."
     git init
@@ -49,7 +48,6 @@ function init_git() {
 
 function git_pull() {
   echo "> 🔄 Pulling remote content..."
-  git pull origin main
   git pull origin main || echo "> ⚠️ No changes to pull from remote."
 }
 
@@ -92,7 +90,7 @@ case "${COMMAND}" in
     init_git "${GIT_URL}"
     ;;
   pull)
-    git pull origin master
+    git_pull
     ;;
   apps-dev)
     install_dev
