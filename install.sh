@@ -8,6 +8,8 @@ function help() {
   echo "Commands:"
   echo "  init      Init git repository and update remote URL."
   echo "  apps-dev  Install recommended development tools."
+  echo "  apps-java Install recommended Java development tools."
+  echo "  apps-rust Install recommended Rust development tools."
   echo
 }
 
@@ -60,27 +62,52 @@ function install_dev() {
   # cocapods
   # sudo gem install cocoapods
 
-  # openjdk
-  # brew install openjdk
-  # jenv for java
-  # brew install jenv
-
   # List of recommended dev tools to install
   install_app "git"
   install_app "git-lfs"
   # git lfs install
 
   install_app "rbenv"
+  install_app "pyenv"
   install_app "tree"
   install_app "wget"
   install_app "scrcpy"
-  install_app "maven"
   install_app "node"
-  # npm install npm -g
 
   install_app "pdcopy"
   # prints strings as ASCII art
   install_app "figlet"
+}
+
+function install_java() {
+  echo "> 🔄 Installing java development tools..."
+  # openjdk
+  # brew install openjdk
+
+  # jenv for java
+  install_app "jenv"
+
+  install_app "maven"
+}
+
+function install_rust() {
+  if command -v rustc &> /dev/null; then
+    echo "> ✅ Rust is already installed."
+    read -p "Do you want to reinstall Rust? (y/n): " choice
+    if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
+      echo "> 🔄 Installing rust development tools..."
+
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+      echo "> ✅ Rust reinstallation completed."
+    else
+      echo "> 🛑 Skipping rust installation."
+    fi
+  else
+    echo "> 🔄 Installing rust development tools..."
+
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    echo "> ✅ Rust installation completed."
+  fi
 }
 
 COMMAND="$1"
@@ -94,6 +121,12 @@ case "${COMMAND}" in
     ;;
   apps-dev)
     install_dev
+    ;;
+  apps-java)
+    install_java
+    ;;
+  apps-rust)
+    install_rust
     ;;
   help)
     help
