@@ -16,18 +16,24 @@ for file in ~/.{path,bash_prompt,exports,aliases,functions,extra,bash_local}; do
 done;
 
 # Jenv
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+if [ -d "$HOME/.jenv" ]; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
+fi
 
 # rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+if [ -d "$HOME/.rbenv" ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
 
 # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
+if [ -d "$HOME/.pyenv" ]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+fi
 
 # npm
 #echo 'export PATH="$(npm prefix -g)/bin:$PATH"'
@@ -89,5 +95,7 @@ export NVM_DIR="$HOME/.nvm"
 # fef
 export PATH=$PATH:$HOME/.fef/bin
 
-# cargo
-. "$HOME/.cargo/env"
+# cargo (Rust)
+if [ -d "$HOME/.cargo" ]; then
+  . "$HOME/.cargo/env"
+fi
