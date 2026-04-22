@@ -29,6 +29,9 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
+# npm
+#echo 'export PATH="$(npm prefix -g)/bin:$PATH"'
+
 # Android SDK
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export ANDROID_SDK_ROOT="$ANDROID_HOME"
@@ -45,6 +48,10 @@ export PATH=$PATH:$NDK_HOME
 export PATH="$PATH:$NDK_HOME/toolchains/aarch64-linux-android-4.9/prebuilt/darwin-x86_64/bin"
 export PATH="$PATH:$NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin"
 export PATH="$PATH:$NDK_HOME/toolchains/llvm/prebuilt/darwin-x86_64/bin"
+
+# flutter
+export FLUTTER_HOME="$HOME/develop/flutter/flutter/bin"
+export PATH="$PATH:$FLUTTER_HOME"
 
 # ohos
 export OHOS_HOME="$HOME/Library/OpenHarmony/Sdk"
@@ -78,3 +85,9 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# fef
+export PATH=$PATH:$HOME/.fef/bin
+
+# cargo
+. "$HOME/.cargo/env"

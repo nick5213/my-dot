@@ -8,6 +8,40 @@ function adb-clear() {
   adb shell input keyevent --longpress $(printf 'KEYCODE_DEL %.0s' {1..250})
 }
 
+function adb-restart() {
+    echo "[adb-restart] finding adb server process..."
+
+    for pid in $(pgrep -f "adb -L tcp:5037 fork-server server"); do
+        echo "[adb-restart] killing adb server pid=$pid"
+        kill -9 "$pid"
+    done
+
+    sleep 1
+
+    echo "[adb-restart] starting adb server..."
+
+    adb start-server >/dev/null 2>&1
+
+    # 校验 adb 是否真正可用
+    adb get-state >/dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        echo "[adb-restart] adb ready"
+        return 0
+    fi
+
+    echo "[adb-restart] retry starting adb..."
+
+    adb start-server >/dev/null 2>&1
+    adb get-state >/dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        echo "[adb-restart] adb ready after retry"
+        return 0
+    fi
+
+    echo "[adb-restart] adb failed after retry"
+    return 1
+}
+
 #
 # adb screen
 #

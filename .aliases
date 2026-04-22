@@ -101,6 +101,38 @@ alias wordart="figlet"
 
 alias timestamp="date +%s"
 
+function _proxy() {
+  local action=$1
+  local type=$2
+  if [[ -z "$action" ]]; then
+    echo "❎ Usage: _proxy [on|off] [type]"
+    return 1
+  fi
+  if [[ "$action" == "off" ]]; then
+    unset http_proxy
+    unset https_proxy
+    unset all_proxy
+    echo "❎ Proxy disabled."
+    return 0
+  fi
+  # acion=on, type=clashx, export http_proxy="127.0.0.1:7890"
+  if [[ "$action" == "on" ]]; then
+    case "$type" in
+      clashx)
+        export http_proxy="http://127.0.0.1:7890"
+        export https_proxy="http://127.0.0.1:7890"
+        export all_proxy="socks5h://127.0.0.1:7890"
+        echo "✅ Proxy clashx enabled"
+        ;;
+      *)
+        echo "❎ Unknown proxy type: $type"
+        return 1
+        ;;
+    esac
+  fi
+}
+
+alias proxy="_proxy"
 
 function _flac2mp3() {
   local input=$1
