@@ -24,9 +24,9 @@ function install_app() {
   local cmd=$1
   if install_check; then
     if command -v $cmd >/dev/null 2>&1; then
-      echo "> [INFO] Already installed: $cmd"
+      echo "> ✅ Already installed: $cmd"
     else
-      echo "> [INFO] Installing $cmd"
+      echo "> 🔧 Installing $cmd"
       brew install $cmd --verbose
     fi
   fi
@@ -35,24 +35,26 @@ function install_app() {
 function init_git() {
   local remote_url=$1
   if [ -d ".git" ]; then
-    echo "> [INFO] Git repository already initialized."
+    echo "> ✅ Git repository already initialized."
+    return 0
   else
-    echo "> [INFO] Init Git repository..."
+    echo "> 🔧 Init Git repository..."
     git init
   fi
   
   # Update the remote URL
   git remote set-url origin $remote_url 2>/dev/null || git remote add origin $remote_url
-  echo "> [INFO] Remote URL updated to: $remote_url"
+  echo "> ✅ Remote URL updated to: $remote_url"
 }
 
 function git_pull() {
-  echo "> [INFO] Pulling remote content..."
+  echo "> 🔄 Pulling remote content..."
   git pull origin main
+  git pull origin main || echo "> ⚠️ No changes to pull from remote."
 }
 
 function install_dev() {
-  echo "> [INFO] Installing recommended development tools..."
+  echo "> 🔄 Installing recommended development tools..."
 
   # brew
   #/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -82,6 +84,8 @@ function install_dev() {
   # prints strings as ASCII art
   install_app "figlet"
 }
+
+COMMAND="$1"
 
 case "${COMMAND}" in
   init)
