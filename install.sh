@@ -46,6 +46,11 @@ function init_git() {
   echo "> [INFO] Remote URL updated to: $remote_url"
 }
 
+function git_pull() {
+  echo "> [INFO] Pulling remote content..."
+  git pull origin main
+}
+
 function install_dev() {
   echo "> [INFO] Installing recommended development tools..."
 
@@ -78,10 +83,20 @@ function install_dev() {
   install_app "figlet"
 }
 
-if [ "$1" == "init" ]; then
-  init_git "${GIT_URL}"
-elif [ "$1" == "apps-dev" ]; then
-  install_dev
-else
-  help
-fi
+case "${COMMAND}" in
+  init)
+    init_git "${GIT_URL}"
+    ;;
+  pull)
+    git pull origin master
+    ;;
+  apps-dev)
+    install_dev
+    ;;
+  help)
+    help
+    ;;
+  *)
+    help
+    ;;
+esac
