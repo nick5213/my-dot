@@ -37,6 +37,19 @@ fi
 
 # npm
 #echo 'export PATH="$(npm prefix -g)/bin:$PATH"'
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# add rvm path
+export PATH="$PATH:$HOME/.rvm/bin"
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# cargo (Rust)
+if [ -d "$HOME/.cargo" ]; then
+  . "$HOME/.cargo/env"
+fi
 
 # Android SDK
 export ANDROID_HOME="$HOME/Library/Android/sdk"
@@ -83,19 +96,5 @@ export PATH="$PATH:$CLASS_DUMP_HOME"
 DEXTRA_HOME="$HOME/develop/decompile/tools/dextra/"
 export PATH="$PATH:$DEXTRA_HOME"
 
-# add rvm path
-export PATH="$PATH:$HOME/.rvm/bin"
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # fef
 export PATH=$PATH:$HOME/.fef/bin
-
-# cargo (Rust)
-if [ -d "$HOME/.cargo" ]; then
-  . "$HOME/.cargo/env"
-fi

@@ -9,6 +9,7 @@ function help() {
   echo "  init      Init git repository and update remote URL."
   echo "  apps-dev  Install recommended development tools."
   echo "  apps-java Install recommended Java development tools."
+  echo "  apps-node Install recommended Node development tools."
   echo "  apps-rust Install recommended Rust development tools."
   echo
 }
@@ -72,7 +73,6 @@ function install_dev() {
   install_app "tree"
   install_app "wget"
   install_app "scrcpy"
-  install_app "node"
 
   install_app "pdcopy"
   # prints strings as ASCII art
@@ -88,6 +88,29 @@ function install_java() {
   install_app "jenv"
 
   install_app "maven"
+}
+
+function install_node() {
+  echo "> 🔄 Installing node development tools..."
+
+  # node
+  # install_app "node"
+
+  # nvm
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+
+  # load nvm
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+  nvm install --lts
+
+  nvm alias default 'lts/*'
+
+  nvm use default
+
+  node -v
+  npm -v
 }
 
 function install_rust() {
@@ -124,6 +147,9 @@ case "${COMMAND}" in
     ;;
   apps-java)
     install_java
+    ;;
+ apps-node)
+    install_node
     ;;
   apps-rust)
     install_rust
