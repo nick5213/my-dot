@@ -5,7 +5,7 @@ export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:/opt/homebrew/bin"
 
 # home local/bin
-echo 'export PATH="$HOME/.local/bin:$PATH"'
+export PATH="$HOME/.local/bin:$PATH"
 
 # xcode path
 export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
