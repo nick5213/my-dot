@@ -90,27 +90,104 @@ function install_java() {
   install_app "maven"
 }
 
+function install_nvm() {
+  if command -v nvm >/dev/null 2>&1; then
+    echo "✅ nvm already installed"
+    return 0
+  fi
+  echo "> 🔄 Installing nvm..."
+
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+  export NVM_DIR="$HOME/.nvm"
+  if [ -s "$NVM_DIR/nvm.sh" ]; then
+    . "$NVM_DIR/nvm.sh"
+  else
+    echo "❎ nvm load failed"
+    return 1
+  fi
+
+  command -v nvm >/dev/null 2>&1 || {
+    echo "❎ nvm install failed"
+    return 1
+  }
+
+  echo "✅ nvm installed"
+}
+
+function install_yarn() {
+  if command -v yarn >/dev/null 2>&1; then
+    echo "✅ Yarn already installed: $(yarn -v)"
+    return 0
+  fi
+
+  echo "> 🔄 Setting up Yarn via corepack..."
+
+  command -v corepack >/dev/null 2>&1 || {
+    echo "❎ corepack not found (Node version too old?)"
+    return 1
+  }
+
+  corepack enable
+  corepack prepare yarn@stable --activate || {
+    echo "❎ Yarn setup failed"
+    return 1
+  }
+
+  # check again
+  command -v yarn >/dev/null 2>&1 || {
+    echo "❎ Yarn not available after setup"
+    return 1
+  }
+
+  echo "✅ Yarn: $(yarn -v)"
+}
+
+install_bun() {
+  if command -v bun >/dev/null 2>&1; then
+    echo "✅ Bun already installed: $(bun -v)"
+    return 0
+  fi
+
+  echo "> 🔄 Installing Bun..."
+
+  curl -fsSL https://bun.sh/install | bash || {
+    echo "❎ Bun install failed"
+    return 1
+  }
+
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+
+  command -v bun >/dev/null 2>&1 || {
+    echo "❎ Bun not available after install"
+    return 1
+  }
+
+  echo "✅ Bun: $(bun -v)"
+}
+
 function install_node() {
   echo "> 🔄 Installing node development tools..."
 
-  # node
-  # install_app "node"
-
   # nvm
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+  install_nvm || return 1
 
-  # load nvm
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  if command -v node >/dev/null 2>&1; then
+    echo "✅ Node already installed: $(node -v)"
+  else
+    echo "> 🔄 Installing Node (LTS)..."
+    nvm install --lts || return 1
+    nvm alias default 'lts/*'
+    nvm use default
+  fi
 
-  nvm install --lts
+  echo "✅ Node: $(node -v)"
+  echo "✅ npm:  $(npm -v)"
 
-  nvm alias default 'lts/*'
-
-  nvm use default
-
-  node -v
-  npm -v
+  # yarn
+  install_yarn
+  # bun
+  install_bun
 }
 
 function install_rust() {
