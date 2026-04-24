@@ -8,7 +8,7 @@ export CMAKE_HOME="$HOME/Library/Android/sdk/cmake/3.22.1/"
 # jadx # java # android #
 #export JADX_HOME="$HOME/develop/decompile/jadx-1.4.7/"
 #export JADX_HOME="$HOME/develop/decompile/jadx-1.5.0/"
-export JADX_HOME="$HOME/develop/decompile/jadx-1.5.2/"
+export JADX_HOME="$HOME/develop/decompile/jadx/"
 
 # class-dump # macos #
 export CLASS_DUMP_HOME="$HOME/develop/hack/macos/class-dump-3.5/"
