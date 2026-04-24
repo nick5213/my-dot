@@ -101,35 +101,40 @@ alias wordart="figlet"
 
 alias timestamp="date +%s"
 
-function _proxy() {
-  local action=$1
-  local type=$2
-  if [[ -z "$action" ]]; then
-    echo "❎ Usage: _proxy [on|off] [type]"
-    return 1
-  fi
-  if [[ "$action" == "off" ]]; then
-    unset http_proxy
-    unset https_proxy
-    unset all_proxy
-    echo "❎ Proxy disabled."
-    return 0
-  fi
-  # acion=on, type=clashx, export http_proxy="127.0.0.1:7890"
-  if [[ "$action" == "on" ]]; then
-    case "$type" in
-      clashx)
-        export http_proxy="http://127.0.0.1:7890"
-        export https_proxy="http://127.0.0.1:7890"
-        export all_proxy="socks5h://127.0.0.1:7890"
-        echo "✅ Proxy clashx enabled"
-        ;;
-      *)
-        echo "❎ Unknown proxy type: $type"
+_proxy() {
+  local action="$1"
+  local port="${2:-7890}"
+
+  case "$action" in
+    on)
+      if ! [[ "$port" =~ ^[0-9]+$ ]] || ((port < 1 || port > 65535)); then
+        echo "❎ Invalid port: $port"
         return 1
-        ;;
-    esac
-  fi
+      fi
+
+      local host="127.0.0.1:$port"
+      export http_proxy="http://$host"
+      export https_proxy="http://$host"
+      export all_proxy="socks5h://$host"
+
+      echo "✅ Proxy on at $host"
+      ;;
+
+    off)
+      unset {http,https,all}_proxy
+      echo "❎ Proxy off"
+      ;;
+
+    "")
+      echo "❎ Usage: proxy [on|off] [port]"
+      return 1
+      ;;
+
+    *)
+      echo "❎ Invalid action: $action (use on/off)"
+      return 1
+      ;;
+  esac
 }
 
 alias proxy="_proxy"
