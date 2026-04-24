@@ -4,6 +4,9 @@ export PATH="$PATH:/usr/local/bin"
 # support M1
 export PATH="$PATH:/opt/homebrew/bin"
 
+# home local/bin
+echo 'export PATH="$HOME/.local/bin:$PATH"'
+
 # xcode path
 export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
 export PATH="$PATH:$SDKROOT"
