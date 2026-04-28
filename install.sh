@@ -66,6 +66,7 @@ function install_dev() {
   # List of recommended dev tools to install
   install_app "git"
   install_app "git-lfs"
+  install_app "lazygit"
   # git lfs install
 
   install_app "rbenv"
