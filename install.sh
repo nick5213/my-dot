@@ -68,6 +68,8 @@ function install_dev() {
   # git lfs install
 
   install_app "rbenv"
+  install_app "rbenv-build"
+
   install_app "pyenv"
   install_app "tree"
   install_app "wget"
@@ -214,6 +216,11 @@ function install_ios() {
 
   # xcode command line tools
   # xcode-select --install
+
+  # brew install rbenv ruby-build
+
+  rbenv install 3.3.6
+  rbenv global 3.3.6
 
   if command -v pod >/dev/null 2>&1; then
     echo "✅ CocoaPods already installed"
