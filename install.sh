@@ -222,7 +222,7 @@ function install_ios() {
     echo "⚠️ CocoaPods not found, installing..."
 
     # install CocoaPods
-    sudo gem install cocoapods
+    sudo gem install cocoapods --verbose
 
     # check again
     if command -v pod >/dev/null 2>&1; then
