@@ -68,7 +68,8 @@ export PATH="$PATH:$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
 export PATH="$PATH:$ANDROID_HOME"
 # Android NDK
-export NDK_HOME="$ANDROID_HOME/ndk/21.1.6352462"
+# export NDK_HOME="$ANDROID_HOME/ndk/21.1.6352462"
+export NDK_HOME="$ANDROID_HOME/ndk/26.2.11394342"
 export NDK_ROOT="$NDK_HOME"
 export PATH=$PATH:$NDK_HOME
 export PATH="$PATH:$NDK_HOME/toolchains/aarch64-linux-android-4.9/prebuilt/darwin-x86_64/bin"

@@ -11,6 +11,7 @@ function help() {
   echo "  apps-java Install recommended Java development tools."
   echo "  apps-node Install recommended Node development tools."
   echo "  apps-rust Install recommended Rust development tools."
+  echo "  apps-ios  Install recommended iOS  development tools."
   echo
 }
 
@@ -59,9 +60,6 @@ function install_dev() {
 
   # brew
   #/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-  # cocapods
-  # sudo gem install cocoapods
 
   # List of recommended dev tools to install
   install_app "git"
@@ -211,6 +209,32 @@ function install_rust() {
   fi
 }
 
+function install_ios() {
+  echo "> 🔄 Checking iOS development tools..."
+
+  # xcode command line tools
+  # xcode-select --install
+
+  if command -v pod >/dev/null 2>&1; then
+    echo "✅ CocoaPods already installed"
+    pod --version
+  else
+    echo "⚠️ CocoaPods not found, installing..."
+
+    # install CocoaPods
+    sudo gem install cocoapods
+
+    # check again
+    if command -v pod >/dev/null 2>&1; then
+      echo "✅ CocoaPods installed successfully"
+      pod --version
+    else
+      echo "❌ CocoaPods installation failed"
+      return 1
+    fi
+  fi
+}
+
 COMMAND="$1"
 
 case "${COMMAND}" in
@@ -231,6 +255,9 @@ case "${COMMAND}" in
     ;;
   apps-rust)
     install_rust
+    ;;
+  apps-ios)
+    install_ios
     ;;
   help)
     help
