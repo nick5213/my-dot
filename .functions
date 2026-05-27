@@ -122,6 +122,12 @@ function git-clone-sparse() {
 #   -z  : 传输时压缩
 # 
 function up() {
+  if [ "$#" -ne 3 ]; then
+    echo "用法: up 本地文件(或目录) 远端主机 远端目录"
+    echo "示例: up test.txt dev /home/root/"
+    echo "示例: up mydir dev /home/root/"
+    return 1
+  fi
   rsync -avz --progress "$1" "$2:$3"
 }
 
@@ -137,6 +143,12 @@ function up() {
 #   down dev /home/root/mydir ./
 # 
 function down() {
+  if [ "$#" -ne 3 ]; then
+    echo "用法: down 远端主机 远端文件(或目录) 本地目录"
+    echo "示例: down dev /home/root/test.txt ./"
+    echo "示例: down dev /home/root/mydir ./"
+    return 1
+  fi
   rsync -avz --progress "$1:$2" "$3"
 }
 
@@ -149,6 +161,11 @@ function down() {
 #   scpup test.txt dev /home/root/
 # 
 function scpup() {
+  if [ "$#" -ne 3 ]; then
+    echo "用法: scpup 本地文件 远端主机 远端目录"
+    echo "示例: scpup test.txt dev /home/root/"
+    return 1
+  fi
   scp "$1" "$2:$3"
 }
 
@@ -163,6 +180,11 @@ function scpup() {
 #   scpdir mydir dev /home/root/
 # 
 function scpdir() {
+  if [ "$#" -ne 3 ]; then
+    echo "用法: scpdir 本地目录 远端主机 远端目录"
+    echo "示例: scpdir mydir dev /home/root/"
+    return 1
+  fi
   scp -r "$1" "$2:$3"
 }
 
@@ -177,5 +199,10 @@ function scpdir() {
 #   scpdown dev /home/root/test.txt ./
 # 
 function scpdown() {
+  if [ "$#" -ne 3 ]; then
+    echo "用法: scpdown 远端主机 远端文件 本地目录"
+    echo "示例: scpdown dev /home/root/test.txt ./"
+    return 1
+  fi
   scp "$1:$2" "$3"
 }
