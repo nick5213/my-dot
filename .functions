@@ -105,3 +105,77 @@ function git-clone-sparse() {
 
   cd -
 }
+
+# 
+# upload to
+#
+# 用法：
+#   up 本地文件(或目录) 远端主机 远端目录
+#
+# 示例：
+#   up test.txt dev /home/root/
+#   up mydir dev /home/root/
+#
+# 参数说明：
+#   -a  : 归档模式（保留权限、时间等）
+#   -v  : 显示详细日志
+#   -z  : 传输时压缩
+# 
+function up() {
+  rsync -avz --progress "$1" "$2:$3"
+}
+
+
+# 
+# 从远程机器下载文件/目录
+#
+# 用法：
+#   down 远端主机 远端文件(或目录) 本地目录
+#
+# 示例：
+#   down dev /home/root/test.txt ./
+#   down dev /home/root/mydir ./
+# 
+function down() {
+  rsync -avz --progress "$1:$2" "$3"
+}
+
+# scp upload file
+#
+# 用法：
+#   scpup 本地文件 远端主机 远端目录
+#
+# 示例：
+#   scpup test.txt dev /home/root/
+# 
+function scpup() {
+  scp "$1" "$2:$3"
+}
+
+
+# 
+# scp upload dir
+#
+# 用法：
+#   scpdir 本地目录 远端主机 远端目录
+#
+# 示例：
+#   scpdir mydir dev /home/root/
+# 
+function scpdir() {
+  scp -r "$1" "$2:$3"
+}
+
+
+# 
+# scp download file
+#
+# 用法：
+#   scpdown 远端主机 远端文件 本地目录
+#
+# 示例：
+#   scpdown dev /home/root/test.txt ./
+# 
+function scpdown() {
+  scp "$1:$2" "$3"
+}
