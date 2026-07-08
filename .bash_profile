@@ -87,6 +87,9 @@ export PATH="$PATH:$OHOS_HOME/13/toolchains"
 #export OHOS_HOME="$HOME/develop/ohos"
 #export PATH="$PATH:$OHOS_HOME/command-line-tools/bin"
 
+# llvm
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+
 # cmake
 export PATH="$PATH:$CMAKE_HOME/bin"
 

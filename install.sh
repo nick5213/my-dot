@@ -27,11 +27,11 @@ function install_check() {
 function install_app() {
   local cmd=$1
   if install_check; then
-    if command -v $cmd >/dev/null 2>&1; then
+    if command -v "$cmd" >/dev/null 2>&1 || brew list --formula "$cmd" >/dev/null 2>&1; then
       echo "> ✅ Already installed: $cmd"
     else
       echo "> 🔧 Installing $cmd"
-      brew install $cmd --verbose
+      brew install "$cmd" --verbose
     fi
   fi
 }
@@ -78,6 +78,8 @@ function install_dev() {
   install_app "pdcopy"
   # prints strings as ASCII art
   install_app "figlet"
+
+  install_app "llvm"
 }
 
 function install_java() {
@@ -251,19 +253,19 @@ case "${COMMAND}" in
   pull)
     git_pull
     ;;
-  apps-dev)
+  apps-dev | dev)
     install_dev
     ;;
-  apps-java)
+  apps-java | java)
     install_java
     ;;
- apps-node)
+ apps-node | node)
     install_node
     ;;
-  apps-rust)
+  apps-rust | rust)
     install_rust
     ;;
-  apps-ios)
+  apps-ios | ios)
     install_ios
     ;;
   help)
