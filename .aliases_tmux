@@ -1,15 +1,61 @@
 #!/usr/bin/env bash
 
 function tx() {
-  if [ "$1" = "new" ]; then
-    tmux new -s "${@:2}"
-  elif [ "$1" = "attach" ]; then
-    tmux attach -t "${@:2}"
-  elif [ "$1" = "kill" ]; then
-    tmux kill-session -t "${@:2}"
-  elif [ "$1" = "switch" ]; then
-    tmux switch -t "${@:2}"
-  else
-    tmux "$@"
-  fi
+  case "$1" in
+    help|h|-h|--help)
+      cat <<'EOF'
+tx - tmux shortcuts
+
+Usage:
+  tx help                    Show this help
+  tx h                       Show this help
+  tx ls                      List sessions
+  tx new <session>           Create a named session
+  tx attach <session>        Attach to a session
+  tx a <session>             Attach to a session
+  tx switch <session>        Switch to a session
+  tx kill <session>          Kill a session
+
+Common tmux commands:
+  tmux ls                    List sessions
+  tmux new -s <session>      Create a named session
+  tmux attach -t <session>   Attach to a session
+  tmux detach                Detach from current session
+  tmux switch -t <session>   Switch to a session
+  tmux rename-session <name> Rename current session
+  tmux rename-window <name>  Rename current window
+  tmux kill-session -t <session>
+
+Inside tmux:
+  prefix d                   Detach
+  prefix c                   New window
+  prefix ,                   Rename window
+  prefix $                   Rename session
+  prefix w                   List windows
+  prefix s                   List sessions
+EOF
+      ;;
+    new)
+      tmux new -s "${@:2}"
+      ;;
+    attach|a)
+      if [ -z "$2" ]; then
+        tmux attach
+      else
+        tmux attach -t "${@:2}"
+      fi
+      ;;
+    kill)
+      tmux kill-session -t "${@:2}"
+      ;;
+    switch)
+      tmux switch -t "${@:2}"
+      ;;
+    ls|list)
+      tmux ls
+      ;;
+    *)
+      tmux "$@"
+      ;;
+  esac
 }
